@@ -88,36 +88,39 @@
     </a-scene>
 
     <script>
-      const startButton = document.getElementById("startButton");
-      const videoCount = 12;
-      const videos = [];
+  const startButton = document.getElementById("startButton");
+  const videoCount = 12;
+  const videos = [];
 
-      for (let i = 0; i < videoCount; i++) {
-        const video = document.getElementById("video" + i);
-        videos.push(video);
+  for (let i = 0; i < videoCount; i++) {
+    const video = document.getElementById("video" + i);
+    videos.push(video);
+  }
+
+  let isStarted = false;
+
+  startButton.addEventListener("click", () => {
+    isStarted = true;
+    startButton.style.display = "none";
+  });
+
+  for (let i = 0; i < videoCount; i++) {
+    const marker = document.getElementById("marker" + i);
+    const video = videos[i];
+
+    marker.addEventListener("markerFound", () => {
+      if (isStarted) {
+        video.play().catch((e) =>
+          console.warn(`Ошибка воспроизведения video${i}:`, e)
+        );
       }
+    });
 
-      let isStarted = false;
-
-      startButton.addEventListener("click", () => {
-        isStarted = true;
-        startButton.style.display = "none";
-      });
-
-      for (let i = 0; i < videoCount; i++) {
-        const marker = document.getElementById("marker" + i);
-        const video = videos[i];
-
-        marker.addEventListener("markerFound", () => {
-          if (isStarted) {
-            video.play().catch((e) =>
-              console.warn(`Ошибка воспроизведения video${i}:`, e)
-            );
-          }
-        });
-
-        // Видео не ставится на паузу при markerLost
-      }
-    </script>
+    marker.addEventListener("markerLost", () => {
+      video.pause();
+      video.currentTime = 0; // Если нужно, чтобы при следующем обнаружении видео начиналось заново
+    });
+  }
+</script>
   </body>
 </html>
