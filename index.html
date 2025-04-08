@@ -5,7 +5,6 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="styles.css" />
-
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
   </head>
@@ -37,7 +36,6 @@
       id="video"
       src="cat.MP4"
       preload="auto"
-      loop
       crossorigin="anonymous"
       webkit-playsinline
       playsinline
@@ -50,12 +48,7 @@
       renderer="logarithmicDepthBuffer: true;"
       vr-mode-ui="enabled: false"
     >
-      <a-marker
-        type="pattern"
-        url="p.patt"
-        emitevents="true"
-        id="markerA"
-      >
+      <a-marker type="pattern" url="p.patt" emitevents="true" id="markerA">
         <a-plane
           rotation="-90 0 0"
           width="4"
@@ -70,28 +63,21 @@
     <script>
       const video = document.querySelector("#video");
       const startButton = document.getElementById("startButton");
-      const marker = document.querySelector("#markerA");
 
-      let hasPlayed = false;
+      // Явно устанавливаем loop
+      video.loop = true;
 
+      // Запуск после клика
       startButton.addEventListener("click", async () => {
         try {
           await video.play();
-          video.pause(); // Подготовка
           startButton.style.display = "none";
         } catch (e) {
           alert("Ошибка при запуске видео: " + e);
         }
       });
 
-      marker.addEventListener("markerFound", () => {
-        if (!hasPlayed) {
-          video.play();
-          hasPlayed = true;
-        }
-      });
-
-      // Удалён markerLost — теперь видео не останавливается
+      // Удалены markerFound/markerLost — видео просто играет вечно
     </script>
   </body>
 </html>
