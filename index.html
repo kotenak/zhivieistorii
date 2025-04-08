@@ -4,7 +4,6 @@
     <title>Живые истории</title>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <link rel="stylesheet" href="styles.css" />
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
   </head>
@@ -31,53 +30,94 @@
       Начать
     </button>
 
-    <!-- Скрытое видео -->
-    <video
-      id="video"
-      src="cat.MP4"
-      preload="auto"
-      crossorigin="anonymous"
-      webkit-playsinline
-      playsinline
-      style="display: none;"
-    ></video>
+    <!-- Видеоэлементы (скрытые) -->
+    <video id="video0" src="video0.MP4" preload="auto" loop crossorigin="anonymous" playsinline webkit-playsinline style="display: none;"></video>
+    <video id="video1" src="video1.mp4" preload="auto" loop crossorigin="anonymous" playsinline webkit-playsinline style="display: none;"></video>
+    <video id="video2" src="video2.mp4" preload="auto" loop crossorigin="anonymous" playsinline webkit-playsinline style="display: none;"></video>
+    <video id="video3" src="video3.mp4" preload="auto" loop crossorigin="anonymous" playsinline webkit-playsinline style="display: none;"></video>
+    <video id="video4" src="video4.mp4" preload="auto" loop crossorigin="anonymous" playsinline webkit-playsinline style="display: none;"></video>
+    <video id="video5" src="video5.mp4" preload="auto" loop crossorigin="anonymous" playsinline webkit-playsinline style="display: none;"></video>
+    <video id="video6" src="video6.mp4" preload="auto" loop crossorigin="anonymous" playsinline webkit-playsinline style="display: none;"></video>
+    <video id="video7" src="video7.mp4" preload="auto" loop crossorigin="anonymous" playsinline webkit-playsinline style="display: none;"></video>
+    <video id="video8" src="video8.mp4" preload="auto" loop crossorigin="anonymous" playsinline webkit-playsinline style="display: none;"></video>
+    <video id="video9" src="video9.mp4" preload="auto" loop crossorigin="anonymous" playsinline webkit-playsinline style="display: none;"></video>
+    <video id="video10" src="video10.mp4" preload="auto" loop crossorigin="anonymous" playsinline webkit-playsinline style="display: none;"></video>
+    <video id="video11" src="video11.mp4" preload="auto" loop crossorigin="anonymous" playsinline webkit-playsinline style="display: none;"></video>
 
-    <a-scene
-      embedded
-      arjs
-      renderer="logarithmicDepthBuffer: true;"
-      vr-mode-ui="enabled: false"
-    >
-      <a-marker type="pattern" url="p.patt" emitevents="true" id="markerA">
-        <a-plane
-          rotation="-90 0 0"
-          width="4"
-          height="2.25"
-          material="shader: flat; src: #video"
-        ></a-plane>
+    <a-scene embedded arjs renderer="logarithmicDepthBuffer: true;" vr-mode-ui="enabled: false">
+      
+      <!-- Маркеры и плоскости -->
+      <a-marker type="pattern" url="p0.patt" emitevents="true" id="marker0">
+        <a-plane rotation="-90 0 0" width="2" height="3.5" material="shader: flat; src: #video0"></a-plane>
+      </a-marker>
+      <a-marker type="pattern" url="p1.patt" emitevents="true" id="marker1">
+        <a-plane rotation="-90 0 0" width="2" height="3.5" material="shader: flat; src: #video1"></a-plane>
+      </a-marker>
+      <a-marker type="pattern" url="p2.patt" emitevents="true" id="marker2">
+        <a-plane rotation="-90 0 0" width="2" height="3.5" material="shader: flat; src: #video2"></a-plane>
+      </a-marker>
+      <a-marker type="pattern" url="p3.patt" emitevents="true" id="marker3">
+        <a-plane rotation="-90 0 0" width="2" height="3.5" material="shader: flat; src: #video3"></a-plane>
+      </a-marker>
+      <a-marker type="pattern" url="p4.patt" emitevents="true" id="marker4">
+        <a-plane rotation="-90 0 0" width="2" height="3.5" material="shader: flat; src: #video4"></a-plane>
+      </a-marker>
+      <a-marker type="pattern" url="p5.patt" emitevents="true" id="marker5">
+        <a-plane rotation="-90 0 0" width="2" height="3.5" material="shader: flat; src: #video5"></a-plane>
+      </a-marker>
+      <a-marker type="pattern" url="p6.patt" emitevents="true" id="marker6">
+        <a-plane rotation="-90 0 0" width="2" height="3.5" material="shader: flat; src: #video6"></a-plane>
+      </a-marker>
+      <a-marker type="pattern" url="p7.patt" emitevents="true" id="marker7">
+        <a-plane rotation="-90 0 0" width="2" height="3.5" material="shader: flat; src: #video7"></a-plane>
+      </a-marker>
+      <a-marker type="pattern" url="p8.patt" emitevents="true" id="marker8">
+        <a-plane rotation="-90 0 0" width="2" height="3.5" material="shader: flat; src: #video8"></a-plane>
+      </a-marker>
+      <a-marker type="pattern" url="p9.patt" emitevents="true" id="marker9">
+        <a-plane rotation="-90 0 0" width="2" height="3.5" material="shader: flat; src: #video9"></a-plane>
+      </a-marker>
+      <a-marker type="pattern" url="p10.patt" emitevents="true" id="marker10">
+        <a-plane rotation="-90 0 0" width="2" height="3.5" material="shader: flat; src: #video10"></a-plane>
+      </a-marker>
+      <a-marker type="pattern" url="p11.patt" emitevents="true" id="marker11">
+        <a-plane rotation="-90 0 0" width="2" height="3.5" material="shader: flat; src: #video11"></a-plane>
       </a-marker>
 
       <a-entity camera></a-entity>
     </a-scene>
 
     <script>
-      const video = document.querySelector("#video");
       const startButton = document.getElementById("startButton");
+      const videoCount = 12;
+      const videos = [];
 
-      // Явно устанавливаем loop
-      video.loop = true;
+      for (let i = 0; i < videoCount; i++) {
+        const video = document.getElementById("video" + i);
+        videos.push(video);
+      }
 
-      // Запуск после клика
-      startButton.addEventListener("click", async () => {
-        try {
-          await video.play();
-          startButton.style.display = "none";
-        } catch (e) {
-          alert("Ошибка при запуске видео: " + e);
-        }
+      let isStarted = false;
+
+      startButton.addEventListener("click", () => {
+        isStarted = true;
+        startButton.style.display = "none";
       });
 
-      // Удалены markerFound/markerLost — видео просто играет вечно
+      for (let i = 0; i < videoCount; i++) {
+        const marker = document.getElementById("marker" + i);
+        const video = videos[i];
+
+        marker.addEventListener("markerFound", () => {
+          if (isStarted) {
+            video.play().catch((e) =>
+              console.warn(`Ошибка воспроизведения video${i}:`, e)
+            );
+          }
+        });
+
+        // Видео не ставится на паузу при markerLost
+      }
     </script>
   </body>
 </html>
