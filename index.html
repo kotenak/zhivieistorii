@@ -11,7 +11,28 @@
   </head>
 
   <body style="margin: 0; overflow: hidden;">
-    <!-- Скрытое видео в DOM -->
+    <!-- Кнопка запуска -->
+    <button
+      id="startButton"
+      style="
+        position: absolute;
+        z-index: 999;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 16px 32px;
+        font-size: 18px;
+        background-color: #1c1c1c;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+      "
+    >
+      Начать
+    </button>
+
+    <!-- Скрытое видео -->
     <video
       id="video"
       src="cat.MP4"
@@ -20,7 +41,6 @@
       crossorigin="anonymous"
       webkit-playsinline
       playsinline
-      muted
       style="display: none;"
     ></video>
 
@@ -36,7 +56,6 @@
         emitevents="true"
         id="markerA"
       >
-        <!-- Плоскость с видео-текстурой -->
         <a-plane
           rotation="-90 0 0"
           width="4"
@@ -51,20 +70,30 @@
     <script>
       const marker = document.querySelector("#markerA");
       const video = document.querySelector("#video");
+      const startButton = document.getElementById("startButton");
+
+      let isReady = false;
+
+      // Запускаем воспроизведение после нажатия кнопки
+      startButton.addEventListener("click", async () => {
+        try {
+          await video.play();
+          video.pause(); // Сразу ставим на паузу — начнём при markerFound
+          isReady = true;
+          startButton.style.display = "none";
+        } catch (e) {
+          alert("Ошибка при попытке воспроизведения видео: " + e);
+        }
+      });
 
       marker.addEventListener("markerFound", () => {
-        video.play();
+        if (isReady) {
+          video.play();
+        }
       });
 
       marker.addEventListener("markerLost", () => {
         video.pause();
-      });
-
-      // Автозапуск после первого взаимодействия пользователя
-      window.addEventListener("click", () => {
-        video.play().catch(() => {
-          console.log("Автовоспроизведение не удалось");
-        });
       });
     </script>
   </body>
