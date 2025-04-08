@@ -68,33 +68,30 @@
     </a-scene>
 
     <script>
-      const marker = document.querySelector("#markerA");
       const video = document.querySelector("#video");
       const startButton = document.getElementById("startButton");
+      const marker = document.querySelector("#markerA");
 
-      let isReady = false;
+      let hasPlayed = false;
 
-      // Запускаем воспроизведение после нажатия кнопки
       startButton.addEventListener("click", async () => {
         try {
           await video.play();
-          video.pause(); // Сразу ставим на паузу — начнём при markerFound
-          isReady = true;
+          video.pause(); // Подготовка
           startButton.style.display = "none";
         } catch (e) {
-          alert("Ошибка при попытке воспроизведения видео: " + e);
+          alert("Ошибка при запуске видео: " + e);
         }
       });
 
       marker.addEventListener("markerFound", () => {
-        if (isReady) {
+        if (!hasPlayed) {
           video.play();
+          hasPlayed = true;
         }
       });
 
-      marker.addEventListener("markerLost", () => {
-        video.pause();
-      });
+      // Удалён markerLost — теперь видео не останавливается
     </script>
   </body>
 </html>
