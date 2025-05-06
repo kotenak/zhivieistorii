@@ -4,6 +4,7 @@
     <title>Живые истории</title>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
     <style>
@@ -29,12 +30,12 @@
         width: 300px;
         height: auto;
         margin-top: 10vh;
-        margin-bottom: 10vh;
+        margin-bottom: 5vh;
       }
       #title {
         color: white;
         font-size: 36px;
-        margin-bottom: 5vh;
+        margin-bottom: 10vh;
         text-align: center;
       }
       #startButton {
@@ -45,7 +46,7 @@
         border: none;
         border-radius: 8px;
         cursor: pointer;
-        margin-bottom: 10vh;
+        margin-bottom: 15vh;
       }
       #hint {
         position: absolute;
@@ -60,6 +61,22 @@
         display: none;
         z-index: 999;
       }
+      #orientationWarning {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: rgba(0,0,0,0.8);
+        color: white;
+        text-align: center;
+        padding: 15px;
+        font-size: 16px;
+        z-index: 1001;
+        display: none;
+      }
+      a-plane {
+        opacity: 0.9;
+      }
     </style>
   </head>
 
@@ -73,6 +90,9 @@
 
     <!-- Подсказка -->
     <div id="hint">Наведите камеру на карточку</div>
+    
+    <!-- Предупреждение о ориентации -->
+    <div id="orientationWarning">Для лучшего отображения поверните телефон вертикально</div>
 
     <!-- Видеоэлементы (скрытые) -->
     <video id="video0" src="video0.MP4" preload="auto" loop crossorigin="anonymous" playsinline webkit-playsinline style="display: none;"></video>
@@ -88,43 +108,43 @@
     <video id="video10" src="video10.MP4" preload="auto" loop crossorigin="anonymous" playsinline webkit-playsinline style="display: none;"></video>
     <video id="video11" src="video11.MP4" preload="auto" loop crossorigin="anonymous" playsinline webkit-playsinline style="display: none;"></video>
 
-    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false; trackingMethod: best;" renderer="logarithmicDepthBuffer: true; alpha: true;" vr-mode-ui="enabled: false">
+    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;" renderer="logarithmicDepthBuffer: true; alpha: true;" vr-mode-ui="enabled: false">
       
-      <!-- Маркеры и плоскости (размер 1.6x1.6 как стандартный маркер) -->
-      <a-marker type="pattern" url="p0.patt" emitevents="true" id="marker0" visible="false">
+      <!-- Маркеры и плоскости -->
+      <a-marker type="pattern" url="p0.patt" emitevents="true" id="marker0">
         <a-plane rotation="-90 0 0" width="1.6" height="1.6" material="shader: flat; src: #video0; transparent: true;"></a-plane>
       </a-marker>
-      <a-marker type="pattern" url="p1.patt" emitevents="true" id="marker1" visible="false">
+      <a-marker type="pattern" url="p1.patt" emitevents="true" id="marker1">
         <a-plane rotation="-90 0 0" width="1.6" height="1.6" material="shader: flat; src: #video1; transparent: true;"></a-plane>
       </a-marker>
-      <a-marker type="pattern" url="p2.patt" emitevents="true" id="marker2" visible="false">
+      <a-marker type="pattern" url="p2.patt" emitevents="true" id="marker2">
         <a-plane rotation="-90 0 0" width="1.6" height="1.6" material="shader: flat; src: #video2; transparent: true;"></a-plane>
       </a-marker>
-      <a-marker type="pattern" url="p3.patt" emitevents="true" id="marker3" visible="false">
+      <a-marker type="pattern" url="p3.patt" emitevents="true" id="marker3">
         <a-plane rotation="-90 0 0" width="1.6" height="1.6" material="shader: flat; src: #video3; transparent: true;"></a-plane>
       </a-marker>
-      <a-marker type="pattern" url="p4.patt" emitevents="true" id="marker4" visible="false">
+      <a-marker type="pattern" url="p4.patt" emitevents="true" id="marker4">
         <a-plane rotation="-90 0 0" width="1.6" height="1.6" material="shader: flat; src: #video4; transparent: true;"></a-plane>
       </a-marker>
-      <a-marker type="pattern" url="p5.patt" emitevents="true" id="marker5" visible="false">
+      <a-marker type="pattern" url="p5.patt" emitevents="true" id="marker5">
         <a-plane rotation="-90 0 0" width="1.6" height="1.6" material="shader: flat; src: #video5; transparent: true;"></a-plane>
       </a-marker>
-      <a-marker type="pattern" url="p6.patt" emitevents="true" id="marker6" visible="false">
+      <a-marker type="pattern" url="p6.patt" emitevents="true" id="marker6">
         <a-plane rotation="-90 0 0" width="1.6" height="1.6" material="shader: flat; src: #video6; transparent: true;"></a-plane>
       </a-marker>
-      <a-marker type="pattern" url="p7.patt" emitevents="true" id="marker7" visible="false">
+      <a-marker type="pattern" url="p7.patt" emitevents="true" id="marker7">
         <a-plane rotation="-90 0 0" width="1.6" height="1.6" material="shader: flat; src: #video7; transparent: true;"></a-plane>
       </a-marker>
-      <a-marker type="pattern" url="p8.patt" emitevents="true" id="marker8" visible="false">
+      <a-marker type="pattern" url="p8.patt" emitevents="true" id="marker8">
         <a-plane rotation="-90 0 0" width="1.6" height="1.6" material="shader: flat; src: #video8; transparent: true;"></a-plane>
       </a-marker>
-      <a-marker type="pattern" url="p9.patt" emitevents="true" id="marker9" visible="false">
+      <a-marker type="pattern" url="p9.patt" emitevents="true" id="marker9">
         <a-plane rotation="-90 0 0" width="1.6" height="1.6" material="shader: flat; src: #video9; transparent: true;"></a-plane>
       </a-marker>
-      <a-marker type="pattern" url="p10.patt" emitevents="true" id="marker10" visible="false">
+      <a-marker type="pattern" url="p10.patt" emitevents="true" id="marker10">
         <a-plane rotation="-90 0 0" width="1.6" height="1.6" material="shader: flat; src: #video10; transparent: true;"></a-plane>
       </a-marker>
-      <a-marker type="pattern" url="p11.patt" emitevents="true" id="marker11" visible="false">
+      <a-marker type="pattern" url="p11.patt" emitevents="true" id="marker11">
         <a-plane rotation="-90 0 0" width="1.6" height="1.6" material="shader: flat; src: #video11; transparent: true;"></a-plane>
       </a-marker>
 
@@ -135,30 +155,40 @@
       const startScreen = document.getElementById("startScreen");
       const startButton = document.getElementById("startButton");
       const hint = document.getElementById("hint");
+      const orientationWarning = document.getElementById("orientationWarning");
       const videoCount = 12;
       const videos = [];
-      const markers = [];
-
-      // Блокировка обработки маркеров до нажатия кнопки
-      let isStarted = false;
-      let markerFound = false;
 
       for (let i = 0; i < videoCount; i++) {
         const video = document.getElementById("video" + i);
         videos.push(video);
-        const marker = document.getElementById("marker" + i);
-        markers.push(marker);
       }
+
+      let isStarted = false;
+      let markerFound = false;
+
+      // Функция проверки ориентации
+      function checkOrientation() {
+        if (!isStarted) return;
+        
+        if (window.innerHeight < window.innerWidth) {
+          // Горизонтальная ориентация
+          orientationWarning.style.display = "block";
+        } else {
+          // Вертикальная ориентация
+          orientationWarning.style.display = "none";
+        }
+      }
+
+      // Обработчик изменения ориентации
+      window.addEventListener("resize", checkOrientation);
+      window.addEventListener("orientationchange", checkOrientation);
 
       startButton.addEventListener("click", () => {
         isStarted = true;
         startScreen.style.display = "none";
         hint.style.display = "block";
-        
-        // Активируем маркеры только после нажатия кнопки
-        markers.forEach(marker => {
-          marker.setAttribute('visible', 'true');
-        });
+        checkOrientation(); // Проверить ориентацию при старте
       });
 
       function updateHintVisibility() {
@@ -172,11 +202,11 @@
       }
 
       for (let i = 0; i < videoCount; i++) {
-        const marker = markers[i];
+        const marker = document.getElementById("marker" + i);
         const video = videos[i];
 
         marker.addEventListener("markerFound", () => {
-          if (isStarted) { // Только если приложение запущено
+          if (isStarted) {
             markerFound = true;
             updateHintVisibility();
             video.play().catch((e) =>
@@ -186,7 +216,7 @@
         });
 
         marker.addEventListener("markerLost", () => {
-          if (isStarted) { // Только если приложение запущено
+          if (isStarted) {
             markerFound = false;
             updateHintVisibility();
             video.pause();
