@@ -40,6 +40,19 @@
         border-radius: 8px;
         cursor: pointer;
       }
+      #hint {
+        position: absolute;
+        bottom: 20px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        color: white;
+        font-size: 18px;
+        background-color: rgba(0,0,0,0.5);
+        padding: 10px;
+        display: none;
+        z-index: 999;
+      }
     </style>
   </head>
 
@@ -49,6 +62,9 @@
       <div id="title">Живые истории</div>
       <button id="startButton">Начать</button>
     </div>
+
+    <!-- Подсказка -->
+    <div id="hint">Наведите камеру на карточку</div>
 
     <!-- Видеоэлементы (скрытые) -->
     <video id="video0" src="video0.MP4" preload="auto" loop crossorigin="anonymous" playsinline webkit-playsinline style="display: none;"></video>
@@ -110,6 +126,7 @@
     <script>
       const startScreen = document.getElementById("startScreen");
       const startButton = document.getElementById("startButton");
+      const hint = document.getElementById("hint");
       const videoCount = 12;
       const videos = [];
 
@@ -119,11 +136,23 @@
       }
 
       let isStarted = false;
+      let markerFound = false;
 
       startButton.addEventListener("click", () => {
         isStarted = true;
         startScreen.style.display = "none";
+        hint.style.display = "block";
       });
+
+      function updateHintVisibility() {
+        if (!isStarted) return;
+        
+        if (markerFound) {
+          hint.style.display = "none";
+        } else {
+          hint.style.display = "block";
+        }
+      }
 
       for (let i = 0; i < videoCount; i++) {
         const marker = document.getElementById("marker" + i);
@@ -131,6 +160,8 @@
 
         marker.addEventListener("markerFound", () => {
           if (isStarted) {
+            markerFound = true;
+            updateHintVisibility();
             video.play().catch((e) =>
               console.warn(`Ошибка воспроизведения video${i}:`, e)
             );
@@ -138,6 +169,8 @@
         });
 
         marker.addEventListener("markerLost", () => {
+          markerFound = false;
+          updateHintVisibility();
           video.pause();
           video.currentTime = 0;
         });
