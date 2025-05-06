@@ -110,41 +110,41 @@
 
     <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;" renderer="logarithmicDepthBuffer: true; alpha: true;" vr-mode-ui="enabled: false">
       
-      <!-- Маркеры и плоскости -->
-      <a-marker type="pattern" url="p0.patt" emitevents="true" id="marker0">
+      <!-- Маркеры и плоскости (изначально невидимые) -->
+      <a-marker type="pattern" url="p0.patt" emitevents="true" id="marker0" visible="false">
         <a-plane rotation="-90 0 0" width="1.6" height="1.6" material="shader: flat; src: #video0; transparent: true;"></a-plane>
       </a-marker>
-      <a-marker type="pattern" url="p1.patt" emitevents="true" id="marker1">
+      <a-marker type="pattern" url="p1.patt" emitevents="true" id="marker1" visible="false">
         <a-plane rotation="-90 0 0" width="1.6" height="1.6" material="shader: flat; src: #video1; transparent: true;"></a-plane>
       </a-marker>
-      <a-marker type="pattern" url="p2.patt" emitevents="true" id="marker2">
+      <a-marker type="pattern" url="p2.patt" emitevents="true" id="marker2" visible="false">
         <a-plane rotation="-90 0 0" width="1.6" height="1.6" material="shader: flat; src: #video2; transparent: true;"></a-plane>
       </a-marker>
-      <a-marker type="pattern" url="p3.patt" emitevents="true" id="marker3">
+      <a-marker type="pattern" url="p3.patt" emitevents="true" id="marker3" visible="false">
         <a-plane rotation="-90 0 0" width="1.6" height="1.6" material="shader: flat; src: #video3; transparent: true;"></a-plane>
       </a-marker>
-      <a-marker type="pattern" url="p4.patt" emitevents="true" id="marker4">
+      <a-marker type="pattern" url="p4.patt" emitevents="true" id="marker4" visible="false">
         <a-plane rotation="-90 0 0" width="1.6" height="1.6" material="shader: flat; src: #video4; transparent: true;"></a-plane>
       </a-marker>
-      <a-marker type="pattern" url="p5.patt" emitevents="true" id="marker5">
+      <a-marker type="pattern" url="p5.patt" emitevents="true" id="marker5" visible="false">
         <a-plane rotation="-90 0 0" width="1.6" height="1.6" material="shader: flat; src: #video5; transparent: true;"></a-plane>
       </a-marker>
-      <a-marker type="pattern" url="p6.patt" emitevents="true" id="marker6">
+      <a-marker type="pattern" url="p6.patt" emitevents="true" id="marker6" visible="false">
         <a-plane rotation="-90 0 0" width="1.6" height="1.6" material="shader: flat; src: #video6; transparent: true;"></a-plane>
       </a-marker>
-      <a-marker type="pattern" url="p7.patt" emitevents="true" id="marker7">
+      <a-marker type="pattern" url="p7.patt" emitevents="true" id="marker7" visible="false">
         <a-plane rotation="-90 0 0" width="1.6" height="1.6" material="shader: flat; src: #video7; transparent: true;"></a-plane>
       </a-marker>
-      <a-marker type="pattern" url="p8.patt" emitevents="true" id="marker8">
+      <a-marker type="pattern" url="p8.patt" emitevents="true" id="marker8" visible="false">
         <a-plane rotation="-90 0 0" width="1.6" height="1.6" material="shader: flat; src: #video8; transparent: true;"></a-plane>
       </a-marker>
-      <a-marker type="pattern" url="p9.patt" emitevents="true" id="marker9">
+      <a-marker type="pattern" url="p9.patt" emitevents="true" id="marker9" visible="false">
         <a-plane rotation="-90 0 0" width="1.6" height="1.6" material="shader: flat; src: #video9; transparent: true;"></a-plane>
       </a-marker>
-      <a-marker type="pattern" url="p10.patt" emitevents="true" id="marker10">
+      <a-marker type="pattern" url="p10.patt" emitevents="true" id="marker10" visible="false">
         <a-plane rotation="-90 0 0" width="1.6" height="1.6" material="shader: flat; src: #video10; transparent: true;"></a-plane>
       </a-marker>
-      <a-marker type="pattern" url="p11.patt" emitevents="true" id="marker11">
+      <a-marker type="pattern" url="p11.patt" emitevents="true" id="marker11" visible="false">
         <a-plane rotation="-90 0 0" width="1.6" height="1.6" material="shader: flat; src: #video11; transparent: true;"></a-plane>
       </a-marker>
 
@@ -158,14 +158,18 @@
       const orientationWarning = document.getElementById("orientationWarning");
       const videoCount = 12;
       const videos = [];
+      const markers = [];
 
+      // Инициализация
       for (let i = 0; i < videoCount; i++) {
         const video = document.getElementById("video" + i);
         videos.push(video);
+        const marker = document.getElementById("marker" + i);
+        markers.push(marker);
+        
+        // Изначально пауза для всех видео
+        video.pause();
       }
-
-      let isStarted = false;
-      let markerFound = false;
 
       // Функция проверки ориентации
       function checkOrientation() {
@@ -184,10 +188,19 @@
       window.addEventListener("resize", checkOrientation);
       window.addEventListener("orientationchange", checkOrientation);
 
+      let isStarted = false;
+      let markerFound = false;
+
       startButton.addEventListener("click", () => {
         isStarted = true;
         startScreen.style.display = "none";
         hint.style.display = "block";
+        
+        // Активируем маркеры только после нажатия кнопки
+        markers.forEach(marker => {
+          marker.setAttribute('visible', 'true');
+        });
+        
         checkOrientation(); // Проверить ориентацию при старте
       });
 
@@ -202,7 +215,7 @@
       }
 
       for (let i = 0; i < videoCount; i++) {
-        const marker = document.getElementById("marker" + i);
+        const marker = markers[i];
         const video = videos[i];
 
         marker.addEventListener("markerFound", () => {
