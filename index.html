@@ -20,15 +20,17 @@
         height: 100%;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start; /* Изменено для позиционирования лого выше */
         align-items: center;
         background-color: rgba(0,0,0,0.7);
         z-index: 1000;
+        padding-top: 10vh; /* Добавлен отступ сверху */
       }
       #logo {
-        width: 200px;
+        width: 300px; /* Увеличен размер логотипа */
         height: auto;
-        margin-bottom: 20px;
+        margin-bottom: 30px;
+        margin-top: 20px; /* Добавлен отступ сверху */
       }
       #title {
         color: white;
@@ -44,6 +46,7 @@
         border: none;
         border-radius: 8px;
         cursor: pointer;
+        margin-top: 20px; /* Добавлен отступ сверху */
       }
       #hint {
         position: absolute;
@@ -86,7 +89,7 @@
     <video id="video10" src="video10.MP4" preload="auto" loop crossorigin="anonymous" playsinline webkit-playsinline style="display: none;"></video>
     <video id="video11" src="video11.MP4" preload="auto" loop crossorigin="anonymous" playsinline webkit-playsinline style="display: none;"></video>
 
-    <a-scene embedded arjs renderer="logarithmicDepthBuffer: true;" vr-mode-ui="enabled: false">
+    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;" renderer="logarithmicDepthBuffer: true;" vr-mode-ui="enabled: false">
       
       <!-- Маркеры и плоскости (размер 1.6x1.6 как стандартный маркер) -->
       <a-marker type="pattern" url="p0.patt" emitevents="true" id="marker0">
@@ -136,13 +139,14 @@
       const videoCount = 12;
       const videos = [];
 
+      // Блокировка обработки маркеров до нажатия кнопки
+      let isStarted = false;
+      let markerFound = false;
+
       for (let i = 0; i < videoCount; i++) {
         const video = document.getElementById("video" + i);
         videos.push(video);
       }
-
-      let isStarted = false;
-      let markerFound = false;
 
       startButton.addEventListener("click", () => {
         isStarted = true;
@@ -165,7 +169,7 @@
         const video = videos[i];
 
         marker.addEventListener("markerFound", () => {
-          if (isStarted) {
+          if (isStarted) { // Только если приложение запущено
             markerFound = true;
             updateHintVisibility();
             video.play().catch((e) =>
@@ -175,10 +179,12 @@
         });
 
         marker.addEventListener("markerLost", () => {
-          markerFound = false;
-          updateHintVisibility();
-          video.pause();
-          video.currentTime = 0;
+          if (isStarted) { // Только если приложение запущено
+            markerFound = false;
+            updateHintVisibility();
+            video.pause();
+            video.currentTime = 0;
+          }
         });
       }
     </script>
