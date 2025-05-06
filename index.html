@@ -6,18 +6,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
-  </head>
-
-  <body style="margin: 0; overflow: hidden;">
-    <!-- Кнопка запуска -->
-    <button
-      id="startButton"
-      style="
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+        font-family: Arial, sans-serif;
+      }
+      #startScreen {
         position: absolute;
-        z-index: 999;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(0,0,0,0.7);
+        z-index: 1000;
+      }
+      #title {
+        color: white;
+        font-size: 36px;
+        margin-bottom: 30px;
+        text-align: center;
+      }
+      #startButton {
         padding: 16px 32px;
         font-size: 18px;
         background-color: #1c1c1c;
@@ -25,10 +39,16 @@
         border: none;
         border-radius: 8px;
         cursor: pointer;
-      "
-    >
-      Начать
-    </button>
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Стартовый экран -->
+    <div id="startScreen">
+      <div id="title">Живые истории</div>
+      <button id="startButton">Начать</button>
+    </div>
 
     <!-- Видеоэлементы (скрытые) -->
     <video id="video0" src="video0.MP4" preload="auto" loop crossorigin="anonymous" playsinline webkit-playsinline style="display: none;"></video>
@@ -46,81 +66,82 @@
 
     <a-scene embedded arjs renderer="logarithmicDepthBuffer: true;" vr-mode-ui="enabled: false">
       
-      <!-- Маркеры и плоскости -->
+      <!-- Маркеры и плоскости (размер 1.6x1.6 как стандартный маркер) -->
       <a-marker type="pattern" url="p0.patt" emitevents="true" id="marker0">
-        <a-plane rotation="-90 0 0" width="2" height="3.5" material="shader: flat; src: #video0"></a-plane>
+        <a-plane rotation="-90 0 0" width="1.6" height="1.6" material="shader: flat; src: #video0"></a-plane>
       </a-marker>
       <a-marker type="pattern" url="p1.patt" emitevents="true" id="marker1">
-        <a-plane rotation="-90 0 0" width="2" height="3.5" material="shader: flat; src: #video1"></a-plane>
+        <a-plane rotation="-90 0 0" width="1.6" height="1.6" material="shader: flat; src: #video1"></a-plane>
       </a-marker>
       <a-marker type="pattern" url="p2.patt" emitevents="true" id="marker2">
-        <a-plane rotation="-90 0 0" width="2" height="3.5" material="shader: flat; src: #video2"></a-plane>
+        <a-plane rotation="-90 0 0" width="1.6" height="1.6" material="shader: flat; src: #video2"></a-plane>
       </a-marker>
       <a-marker type="pattern" url="p3.patt" emitevents="true" id="marker3">
-        <a-plane rotation="-90 0 0" width="2" height="3.5" material="shader: flat; src: #video3"></a-plane>
+        <a-plane rotation="-90 0 0" width="1.6" height="1.6" material="shader: flat; src: #video3"></a-plane>
       </a-marker>
       <a-marker type="pattern" url="p4.patt" emitevents="true" id="marker4">
-        <a-plane rotation="-90 0 0" width="2" height="3.5" material="shader: flat; src: #video4"></a-plane>
+        <a-plane rotation="-90 0 0" width="1.6" height="1.6" material="shader: flat; src: #video4"></a-plane>
       </a-marker>
       <a-marker type="pattern" url="p5.patt" emitevents="true" id="marker5">
-        <a-plane rotation="-90 0 0" width="2" height="3.5" material="shader: flat; src: #video5"></a-plane>
+        <a-plane rotation="-90 0 0" width="1.6" height="1.6" material="shader: flat; src: #video5"></a-plane>
       </a-marker>
       <a-marker type="pattern" url="p6.patt" emitevents="true" id="marker6">
-        <a-plane rotation="-90 0 0" width="2" height="3.5" material="shader: flat; src: #video6"></a-plane>
+        <a-plane rotation="-90 0 0" width="1.6" height="1.6" material="shader: flat; src: #video6"></a-plane>
       </a-marker>
       <a-marker type="pattern" url="p7.patt" emitevents="true" id="marker7">
-        <a-plane rotation="-90 0 0" width="2" height="3.5" material="shader: flat; src: #video7"></a-plane>
+        <a-plane rotation="-90 0 0" width="1.6" height="1.6" material="shader: flat; src: #video7"></a-plane>
       </a-marker>
       <a-marker type="pattern" url="p8.patt" emitevents="true" id="marker8">
-        <a-plane rotation="-90 0 0" width="2" height="3.5" material="shader: flat; src: #video8"></a-plane>
+        <a-plane rotation="-90 0 0" width="1.6" height="1.6" material="shader: flat; src: #video8"></a-plane>
       </a-marker>
       <a-marker type="pattern" url="p9.patt" emitevents="true" id="marker9">
-        <a-plane rotation="-90 0 0" width="2" height="3.5" material="shader: flat; src: #video9"></a-plane>
+        <a-plane rotation="-90 0 0" width="1.6" height="1.6" material="shader: flat; src: #video9"></a-plane>
       </a-marker>
       <a-marker type="pattern" url="p10.patt" emitevents="true" id="marker10">
-        <a-plane rotation="-90 0 0" width="2" height="3.5" material="shader: flat; src: #video10"></a-plane>
+        <a-plane rotation="-90 0 0" width="1.6" height="1.6" material="shader: flat; src: #video10"></a-plane>
       </a-marker>
       <a-marker type="pattern" url="p11.patt" emitevents="true" id="marker11">
-        <a-plane rotation="-90 0 0" width="2" height="3.5" material="shader: flat; src: #video11"></a-plane>
+        <a-plane rotation="-90 0 0" width="1.6" height="1.6" material="shader: flat; src: #video11"></a-plane>
       </a-marker>
 
       <a-entity camera></a-entity>
     </a-scene>
 
     <script>
-  const startButton = document.getElementById("startButton");
-  const videoCount = 12;
-  const videos = [];
+      const startScreen = document.getElementById("startScreen");
+      const startButton = document.getElementById("startButton");
+      const videoCount = 12;
+      const videos = [];
 
-  for (let i = 0; i < videoCount; i++) {
-    const video = document.getElementById("video" + i);
-    videos.push(video);
-  }
-
-  let isStarted = false;
-
-  startButton.addEventListener("click", () => {
-    isStarted = true;
-    startButton.style.display = "none";
-  });
-
-  for (let i = 0; i < videoCount; i++) {
-    const marker = document.getElementById("marker" + i);
-    const video = videos[i];
-
-    marker.addEventListener("markerFound", () => {
-      if (isStarted) {
-        video.play().catch((e) =>
-          console.warn(`Ошибка воспроизведения video${i}:`, e)
-        );
+      for (let i = 0; i < videoCount; i++) {
+        const video = document.getElementById("video" + i);
+        videos.push(video);
       }
-    });
 
-    marker.addEventListener("markerLost", () => {
-      video.pause();
-      video.currentTime = 0; // Если нужно, чтобы при следующем обнаружении видео начиналось заново
-    });
-  }
-</script>
+      let isStarted = false;
+
+      startButton.addEventListener("click", () => {
+        isStarted = true;
+        startScreen.style.display = "none";
+      });
+
+      for (let i = 0; i < videoCount; i++) {
+        const marker = document.getElementById("marker" + i);
+        const video = videos[i];
+
+        marker.addEventListener("markerFound", () => {
+          if (isStarted) {
+            video.play().catch((e) =>
+              console.warn(`Ошибка воспроизведения video${i}:`, e)
+            );
+          }
+        });
+
+        marker.addEventListener("markerLost", () => {
+          video.pause();
+          video.currentTime = 0;
+        });
+      }
+    </script>
   </body>
 </html>
