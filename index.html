@@ -83,7 +83,7 @@
   <body>
     <!-- Стартовый экран -->
     <div id="startScreen">
-      <img id="logo" src="logo.png" alt="Логотип">
+      <img id="logo" src="materials/logo.png" alt="Логотип">
       <div id="title">Живые истории</div>
       <button id="startButton">Начать</button>
     </div>
@@ -95,56 +95,56 @@
     <div id="orientationWarning">Для лучшего отображения поверните телефон вертикально</div>
 
     <!-- Видеоэлементы (скрытые) -->
-    <video id="video0" src="video0.MP4" preload="auto" loop crossorigin="anonymous" playsinline webkit-playsinline style="display: none;"></video>
-    <video id="video1" src="video1.MP4" preload="auto" loop crossorigin="anonymous" playsinline webkit-playsinline style="display: none;"></video>
-    <video id="video2" src="video2.MP4" preload="auto" loop crossorigin="anonymous" playsinline webkit-playsinline style="display: none;"></video>
-    <video id="video3" src="video3.MP4" preload="auto" loop crossorigin="anonymous" playsinline webkit-playsinline style="display: none;"></video>
-    <video id="video4" src="video4.MP4" preload="auto" loop crossorigin="anonymous" playsinline webkit-playsinline style="display: none;"></video>
-    <video id="video5" src="video5.MP4" preload="auto" loop crossorigin="anonymous" playsinline webkit-playsinline style="display: none;"></video>
-    <video id="video6" src="video6.MP4" preload="auto" loop crossorigin="anonymous" playsinline webkit-playsinline style="display: none;"></video>
-    <video id="video7" src="video7.MP4" preload="auto" loop crossorigin="anonymous" playsinline webkit-playsinline style="display: none;"></video>
-    <video id="video8" src="video8.MP4" preload="auto" loop crossorigin="anonymous" playsinline webkit-playsinline style="display: none;"></video>
-    <video id="video9" src="video9.MP4" preload="auto" loop crossorigin="anonymous" playsinline webkit-playsinline style="display: none;"></video>
-    <video id="video10" src="video10.MP4" preload="auto" loop crossorigin="anonymous" playsinline webkit-playsinline style="display: none;"></video>
-    <video id="video11" src="video11.MP4" preload="auto" loop crossorigin="anonymous" playsinline webkit-playsinline style="display: none;"></video>
+    <video id="video0" src="materials/video0.MP4" preload="auto" loop crossorigin="anonymous" playsinline webkit-playsinline style="display: none;"></video>
+    <video id="video1" src="materials/video1.MP4" preload="auto" loop crossorigin="anonymous" playsinline webkit-playsinline style="display: none;"></video>
+    <video id="video2" src="materials/video2.MP4" preload="auto" loop crossorigin="anonymous" playsinline webkit-playsinline style="display: none;"></video>
+    <video id="video3" src="materials/video3.MP4" preload="auto" loop crossorigin="anonymous" playsinline webkit-playsinline style="display: none;"></video>
+    <video id="video4" src="materials/video4.MP4" preload="auto" loop crossorigin="anonymous" playsinline webkit-playsinline style="display: none;"></video>
+    <video id="video5" src="materials/video5.MP4" preload="auto" loop crossorigin="anonymous" playsinline webkit-playsinline style="display: none;"></video>
+    <video id="video6" src="materials/video6.MP4" preload="auto" loop crossorigin="anonymous" playsinline webkit-playsinline style="display: none;"></video>
+    <video id="video7" src="materials/video7.MP4" preload="auto" loop crossorigin="anonymous" playsinline webkit-playsinline style="display: none;"></video>
+    <video id="video8" src="materials/video8.MP4" preload="auto" loop crossorigin="anonymous" playsinline webkit-playsinline style="display: none;"></video>
+    <video id="video9" src="materials/video9.MP4" preload="auto" loop crossorigin="anonymous" playsinline webkit-playsinline style="display: none;"></video>
+    <video id="video10" src="materials/video10.MP4" preload="auto" loop crossorigin="anonymous" playsinline webkit-playsinline style="display: none;"></video>
+    <video id="video11" src="materials/video11.MP4" preload="auto" loop crossorigin="anonymous" playsinline webkit-playsinline style="display: none;"></video>
 
     <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;" renderer="logarithmicDepthBuffer: true; alpha: true;" vr-mode-ui="enabled: false">
       
       <!-- Маркеры и плоскости -->
-      <a-marker type="pattern" url="p0.patt" emitevents="true" id="marker0">
+      <a-marker type="pattern" url="patterns/p0.patt" emitevents="true" id="marker0">
         <a-plane rotation="-90 0 0" width="1.6" height="1.6" material="shader: flat; src: #video0; transparent: true;"></a-plane>
       </a-marker>
-      <a-marker type="pattern" url="p1.patt" emitevents="true" id="marker1">
+      <a-marker type="pattern" url="patterns/p1.patt" emitevents="true" id="marker1">
         <a-plane rotation="-90 0 0" width="1.6" height="1.6" material="shader: flat; src: #video1; transparent: true;"></a-plane>
       </a-marker>
-      <a-marker type="pattern" url="p2.patt" emitevents="true" id="marker2">
+      <a-marker type="pattern" url="patterns/p2.patt" emitevents="true" id="marker2">
         <a-plane rotation="-90 0 0" width="1.6" height="1.6" material="shader: flat; src: #video2; transparent: true;"></a-plane>
       </a-marker>
-      <a-marker type="pattern" url="p3.patt" emitevents="true" id="marker3">
+      <a-marker type="pattern" url="patterns/p3.patt" emitevents="true" id="marker3">
         <a-plane rotation="-90 0 0" width="1.6" height="1.6" material="shader: flat; src: #video3; transparent: true;"></a-plane>
       </a-marker>
-      <a-marker type="pattern" url="p4.patt" emitevents="true" id="marker4">
+      <a-marker type="pattern" url="patterns/p4.patt" emitevents="true" id="marker4">
         <a-plane rotation="-90 0 0" width="1.6" height="1.6" material="shader: flat; src: #video4; transparent: true;"></a-plane>
       </a-marker>
-      <a-marker type="pattern" url="p5.patt" emitevents="true" id="marker5">
+      <a-marker type="pattern" url="patterns/p5.patt" emitevents="true" id="marker5">
         <a-plane rotation="-90 0 0" width="1.6" height="1.6" material="shader: flat; src: #video5; transparent: true;"></a-plane>
       </a-marker>
-      <a-marker type="pattern" url="p6.patt" emitevents="true" id="marker6">
+      <a-marker type="pattern" url="patterns/p6.patt" emitevents="true" id="marker6">
         <a-plane rotation="-90 0 0" width="1.6" height="1.6" material="shader: flat; src: #video6; transparent: true;"></a-plane>
       </a-marker>
-      <a-marker type="pattern" url="p7.patt" emitevents="true" id="marker7">
+      <a-marker type="pattern" url="patterns/p7.patt" emitevents="true" id="marker7">
         <a-plane rotation="-90 0 0" width="1.6" height="1.6" material="shader: flat; src: #video7; transparent: true;"></a-plane>
       </a-marker>
-      <a-marker type="pattern" url="p8.patt" emitevents="true" id="marker8">
+      <a-marker type="pattern" url="patterns/p8.patt" emitevents="true" id="marker8">
         <a-plane rotation="-90 0 0" width="1.6" height="1.6" material="shader: flat; src: #video8; transparent: true;"></a-plane>
       </a-marker>
-      <a-marker type="pattern" url="p9.patt" emitevents="true" id="marker9">
+      <a-marker type="pattern" url="patterns/p9.patt" emitevents="true" id="marker9">
         <a-plane rotation="-90 0 0" width="1.6" height="1.6" material="shader: flat; src: #video9; transparent: true;"></a-plane>
       </a-marker>
-      <a-marker type="pattern" url="p10.patt" emitevents="true" id="marker10">
+      <a-marker type="pattern" url="patterns/p10.patt" emitevents="true" id="marker10">
         <a-plane rotation="-90 0 0" width="1.6" height="1.6" material="shader: flat; src: #video10; transparent: true;"></a-plane>
       </a-marker>
-      <a-marker type="pattern" url="p11.patt" emitevents="true" id="marker11">
+      <a-marker type="pattern" url="patterns/p11.patt" emitevents="true" id="marker11">
         <a-plane rotation="-90 0 0" width="1.6" height="1.6" material="shader: flat; src: #video11; transparent: true;"></a-plane>
       </a-marker>
 
